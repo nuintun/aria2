@@ -1,62 +1,88 @@
 <style lang="stylus">
-  @import './stylus/main'
+  @import './stylus/main';
+
+  html, body{
+    overflow-y: auto;
+  }
 </style>
 
 <template>
   <v-app>
-    <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer">
-      <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i">
-          <v-list-tile value="true">
+    <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
+      <v-list class="pa-0">
+        <v-list-item>
+          <v-list-tile avatar tag="div">
+            <v-list-tile-avatar>
+              <img src="https://randomuser.me/api/portraits/men/85.jpg" />
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>Aria2</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-item>
+      </v-list>
+      <v-divider></v-divider>
+      <v-list class="pt-0" dense>
+        <v-list-item v-for="item in items" :key="item">
+          <v-list-tile ripple>
             <v-list-tile-action>
-              <v-icon light v-html="item.icon"></v-icon>
+              <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{item.title}} ({{item.count}})</v-list-tile-title>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar>
-      <v-toolbar-side-icon @click.native.stop="miniVariant = !miniVariant"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+    <v-toolbar fixed light>
+      <v-toolbar-side-icon light @click.native.stop="mini = !mini"></v-toolbar-side-icon>
       <v-spacer></v-spacer>
-      <v-btn icon @click.native.stop="rightDrawer = !rightDrawer">
-        <v-icon>settings</v-icon>
-      </v-btn>
+      <v-menu bottom left>
+        <v-btn icon="icon" slot="activator" light>
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+        <v-list dense class="pt-0 pb-0">
+          <v-list-item>
+            <v-list-tile ripple>
+              <v-dialog v-model="dialog" scrollable :width="600">
+                <v-list-tile-title primary slot="activator">连接设置</v-list-tile-title>
+                <v-card>
+                  <v-card-row>
+                    <v-card-title>Aria2设置</v-card-title>
+                  </v-card-row>
+                  <v-card-row>
+                    <v-card-text>
+                      <v-text-field label="服务器地址" required></v-text-field>
+                      <v-text-field label="服务器端口" required hint="Aria2默认端口：6800"></v-text-field>
+                      <v-text-field label="RPC路径" required hint="Aria2默认RPC：/jsonrpc"></v-text-field>
+                      <v-text-field label="服务器密码" type="password"></v-text-field>
+                      <v-text-field label="Legal last name" hint="example of persistent helper text" persistent-hint required></v-text-field>
+                      <v-select label="Age" required :items="['0-17', '18-29', '30-54', '54+']"></v-select>
+                      <small>带*为必填项</small>
+                    </v-card-text>
+                  </v-card-row>
+                  <v-card-row actions>
+                    <v-btn flat class="blue--text darken-1" @click.native="dialog = false">保存</v-btn>
+                    <v-btn flat class="blue--text darken-1" @click.native="dialog = false">取消</v-btn>
+                  </v-card-row>
+                </v-card>
+              </v-dialog>
+            </v-list-tile>
+          </v-list-item>
+          <v-list-item>
+            <v-list-tile ripple>
+              <v-list-tile-title>全局设置</v-list-tile-title>
+            </v-list-tile>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-toolbar>
     <main>
       <v-container fluid>
-        <v-slide-y-transition mode="out-in">
-          <v-layout column align-center>
-            <img src="/public/v.png" alt="Vuetify.js" class="mb-5" />
-            <blockquote>
-              <footer>
-                <small>
-                  <em>额，不知道说啥~</em>
-                </small>
-              </footer>
-            </blockquote>
-          </v-layout>
-        </v-slide-y-transition>
+        <div class="title">额，不知道说啥~</div>
       </v-container>
     </main>
-    <v-navigation-drawer temporary :right="right" v-model="rightDrawer">
-      <v-list>
-        <v-list-item>
-          <v-list-tile @click.native="right = !right">
-            <v-list-tile-action>
-              <v-icon light>compare_arrows</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-          </v-list-tile>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed">
-      <span>&copy; 2017</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -64,18 +90,15 @@
 export default {
   data() {
     return {
-      clipped: true,
+      dialog: false,
       drawer: true,
-      fixed: true,
       items: [
-        { icon: 'cloud_download', title: '正在下载', count: 3 },
-        { icon: 'done_all', title: '已完成', count: 5 },
-        { icon: 'delete', title: '已删除', count: 2 }
+        { title: '正在下载', icon: 'archive', count: 6 },
+        { title: '已完成', icon: 'done_all', count: 8 },
+        { title: '已删除', icon: 'delete', count: 10 }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Aria2'
+      mini: false,
+      right: null
     }
   }
 }
