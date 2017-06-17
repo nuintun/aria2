@@ -8,7 +8,7 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer persistent :mini-variant="mini" v-model="drawer" :clipped="clipped">
+    <v-navigation-drawer persistent enable-resize-watcher :mini-variant="mini" v-model="drawer" :clipped="clipped">
       <v-list dense>
         <v-list-item v-for="item in items" :key="item">
           <v-list-tile ripple>
@@ -23,7 +23,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed light>
-      <v-toolbar-side-icon light @click.native.stop="mini = !mini"></v-toolbar-side-icon>
+      <v-toolbar-side-icon light v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-list class="pa-0">
         <v-list-item>
           <v-list-tile avatar tag="div">
@@ -89,13 +89,6 @@ export default {
         { title: '已删除', icon: 'delete', count: 10 }
       ]
     }
-  },
-  mounted: function () {
-    var self = this;
-
-    window.addEventListener('resize', function () {
-      self.mini = window.innerWidth <= 1024;
-    }, { passive: false })
   }
 }
 </script>
