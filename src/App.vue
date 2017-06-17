@@ -46,7 +46,7 @@
           <v-list-item>
             <v-list-tile ripple>
               <v-list-tile-title @click="auth = !auth">连接设置</v-list-tile-title>
-              <v-dialog persistent v-model="auth" scrollable :width="600">
+              <v-dialog persistent v-model="auth" :width="600">
                 <v-card>
                   <v-card-row>
                     <v-card-title>Aria2 设置</v-card-title>
@@ -54,10 +54,10 @@
                   <v-divider light></v-divider>
                   <v-card-row>
                     <v-card-text>
-                      <v-text-field label="服务器地址" required dark></v-text-field>
-                      <v-text-field label="服务器端口" required hint="Aria2 默认端口：6800" dark></v-text-field>
-                      <v-text-field label="RPC路径" required hint="Aria2 默认 RPC：/jsonrpc" dark></v-text-field>
-                      <v-text-field label="服务器密码" type="password" class="mb-0" dark></v-text-field>
+                      <v-text-field prepend-icon="dns" label="服务器地址" required hint="Aria2 RPC 所在服务器的 IP 或域名（默认：127.0.0.1）" v-model="url" dark></v-text-field>
+                      <v-text-field prepend-icon="link" label="服务器端口" required hint="Aria2 端口（默认：6800）" v-model="port" dark></v-text-field>
+                      <v-text-field prepend-icon="swap_calls" label="RPC路径" required hint="Aria2 RPC 地址（默认：/jsonrpc）" v-model="rpc" dark></v-text-field>
+                      <v-text-field prepend-icon="verified_user" label="服务器密码" type="password" hint="Aria2 访问密码（默认为空）" v-model="password" dark></v-text-field>
                       <v-switch primary hide-details label="SSL/TLS 加密" v-model="ssl" class="mt-0" dark></v-switch>
                       <small class="right">提示：带 * 为必填项</small>
                     </v-card-text>
@@ -93,6 +93,8 @@ export default {
     return {
       url: '127.0.0.1',
       port: 6800,
+      rpc: '/jsonrpc',
+      password: '',
       ssl: false,
       mini: false,
       auth: false,
