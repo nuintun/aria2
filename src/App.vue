@@ -8,7 +8,7 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer permanent :mini-variant="mini" v-model="drawer" :clipped="clipped">
+    <v-navigation-drawer persistent :mini-variant="mini" v-model="drawer" :clipped="clipped">
       <v-list dense>
         <v-list-item v-for="item in items" :key="item">
           <v-list-tile ripple>
