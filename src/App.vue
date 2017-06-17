@@ -13,7 +13,7 @@
         <v-list-item>
           <v-list-tile avatar tag="div">
             <v-list-tile-avatar>
-              <img src="https://randomuser.me/api/portraits/men/85.jpg" />
+              <img src="/public/v.png" />
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title>Aria2</v-list-tile-title>
