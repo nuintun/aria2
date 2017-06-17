@@ -54,18 +54,18 @@
                   <v-divider light></v-divider>
                   <v-card-row>
                     <v-card-text>
-                      <v-text-field prepend-icon="dns" label="服务器地址" required hint="Aria2 RPC 所在服务器的 IP 或域名（默认：127.0.0.1）" v-model="url" dark></v-text-field>
-                      <v-text-field prepend-icon="link" label="服务器端口" required hint="Aria2 端口（默认：6800）" v-model="port" dark></v-text-field>
-                      <v-text-field prepend-icon="swap_calls" label="RPC路径" required hint="Aria2 RPC 地址（默认：/jsonrpc）" v-model="rpc" dark></v-text-field>
-                      <v-text-field prepend-icon="verified_user" label="服务器密码" type="password" hint="Aria2 访问密码（默认为空）" v-model="password" dark></v-text-field>
-                      <v-switch primary hide-details label="SSL/TLS 加密" v-model="ssl" class="mt-0" dark></v-switch>
+                      <v-text-field prepend-icon="dns" class="ml-2" label="服务器地址" required hint="Aria2 RPC 所在服务器的 IP 或域名（默认：127.0.0.1）" v-model="url" dark></v-text-field>
+                      <v-text-field prepend-icon="link" class="ml-2" label="服务器端口" required hint="Aria2 端口（默认：6800）" v-model="port" dark></v-text-field>
+                      <v-text-field prepend-icon="swap_calls" class="ml-2" label="RPC路径" required hint="Aria2 RPC 地址（默认：/jsonrpc）" v-model="rpc" dark></v-text-field>
+                      <v-text-field prepend-icon="verified_user" class="ml-2" label="服务器密码" type="password" hint="Aria2 访问密码（默认为空）" v-model="password" dark></v-text-field>
+                      <v-switch primary hide-details label="SSL/TLS 加密" v-model="ssl" class="mt-0 ml-2" dark></v-switch>
                       <small class="right">提示：带 * 为必填项</small>
                     </v-card-text>
                   </v-card-row>
                   <v-divider light></v-divider>
                   <v-card-row actions>
-                    <v-btn light info @click.native="auth = false">保存</v-btn>
-                    <v-btn light class="ml-2 grey darken-1" @click.native="auth = false">取消</v-btn>
+                    <v-btn light primary @click.native="auth = false">保存</v-btn>
+                    <v-btn light secondary class="ml-2" @click.native="auth = false">取消</v-btn>
                   </v-card-row>
                 </v-card>
               </v-dialog>
@@ -74,6 +74,16 @@
           <v-list-item>
             <v-list-tile ripple>
               <v-list-tile-title>全局设置</v-list-tile-title>
+            </v-list-tile>
+          </v-list-item>
+          <v-list-item>
+            <v-list-tile ripple>
+              <v-list-tile-title>服务器信息</v-list-tile-title>
+            </v-list-tile>
+          </v-list-item>
+          <v-list-item>
+            <v-list-tile ripple>
+              <v-list-tile-title>关于和捐助</v-list-tile-title>
             </v-list-tile>
           </v-list-item>
         </v-list>
