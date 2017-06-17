@@ -42,8 +42,8 @@
           <v-icon>more_vert</v-icon>
         </v-btn>
         <v-list dense class="pt-0 pb-0">
-          <v-list-item @click="auth = !auth">
-            <v-list-tile ripple>
+          <v-list-item>
+            <v-list-tile ripple @click.native="auth = !auth">
               <v-list-tile-title>连接设置</v-list-tile-title>
               <aria2-auth :auth.sync="auth"></aria2-auth>
             </v-list-tile>
