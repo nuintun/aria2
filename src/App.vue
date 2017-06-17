@@ -13,7 +13,7 @@
         <v-list-item>
           <v-list-tile avatar tag="div">
             <v-list-tile-avatar>
-              <img src="/public/v.png" />
+              <img src="/public/logo.png" />
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title>Aria2</v-list-tile-title>
@@ -45,8 +45,8 @@
         <v-list dense class="pt-0 pb-0">
           <v-list-item>
             <v-list-tile ripple>
-              <v-dialog v-model="dialog" scrollable :width="600">
-                <v-list-tile-title primary slot="activator">连接设置</v-list-tile-title>
+              <v-list-tile-title @click="auth = !auth">连接设置</v-list-tile-title>
+              <v-dialog v-model="auth" scrollable :width="600">
                 <v-card>
                   <v-card-row>
                     <v-card-title>Aria2设置</v-card-title>
@@ -62,8 +62,8 @@
                     </v-card-text>
                   </v-card-row>
                   <v-card-row actions>
-                    <v-btn flat class="blue--text darken-1" @click.native="dialog = false">保存</v-btn>
-                    <v-btn flat class="blue--text darken-1" @click.native="dialog = false">取消</v-btn>
+                    <v-btn light info @click.native="dialog = false">保存</v-btn>
+                    <v-btn light class="ml-2 grey darken-1" @click.native="dialog = false">取消</v-btn>
                   </v-card-row>
                 </v-card>
               </v-dialog>
@@ -91,7 +91,8 @@ export default {
     return {
       url: '127.0.0.1',
       port: 6800,
-      dialog: false,
+      auth: false,
+      configure: false,
       drawer: true,
       ssl: false,
       items: [
