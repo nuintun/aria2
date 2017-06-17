@@ -89,6 +89,13 @@ export default {
         { title: '已删除', icon: 'delete', count: 10 }
       ]
     }
+  },
+  mounted: function () {
+    var self = this;
+
+    window.addEventListener('resize', function () {
+      self.mini = window.innerWidth <= 1024;
+    }, { passive: false })
   }
 }
 </script>
