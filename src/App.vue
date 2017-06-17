@@ -8,21 +8,8 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer permanent :mini-variant="mini" v-model="drawer">
-      <v-list class="pa-0">
-        <v-list-item>
-          <v-list-tile avatar tag="div">
-            <v-list-tile-avatar>
-              <img src="/public/logo.png" />
-            </v-list-tile-avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Aria2</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list-item>
-      </v-list>
-      <v-divider light></v-divider>
-      <v-list class="pt-0" dense>
+    <v-navigation-drawer permanent :mini-variant="mini" v-model="drawer" :clipped="clipped">
+      <v-list dense>
         <v-list-item v-for="item in items" :key="item">
           <v-list-tile ripple>
             <v-list-tile-action>
@@ -37,6 +24,18 @@
     </v-navigation-drawer>
     <v-toolbar fixed light>
       <v-toolbar-side-icon light @click.native.stop="mini = !mini"></v-toolbar-side-icon>
+      <v-list class="pa-0">
+        <v-list-item>
+          <v-list-tile avatar tag="div">
+            <v-list-tile-avatar>
+              <img src="/public/logo.png" />
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>Aria2</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list-item>
+      </v-list>
       <v-spacer></v-spacer>
       <v-menu bottom left>
         <v-btn icon="icon" slot="activator" light>
@@ -79,6 +78,7 @@
 export default {
   data() {
     return {
+      clipped: true,
       auth: false,
       mini: false,
       drawer: true,
