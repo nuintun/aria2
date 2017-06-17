@@ -8,7 +8,7 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
+    <v-navigation-drawer persistent :mini-variant.sync="mini" v-model="drawer">
       <v-list class="pa-0">
         <v-list-item>
           <v-list-tile avatar tag="div">
@@ -21,12 +21,12 @@
           </v-list-tile>
         </v-list-item>
       </v-list>
-      <v-divider></v-divider>
+      <v-divider light></v-divider>
       <v-list class="pt-0" dense>
         <v-list-item v-for="item in items" :key="item">
           <v-list-tile ripple>
             <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon light>{{ item.icon }}</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>{{ item.title }} ({{ item.count }})</v-list-tile-title>
@@ -53,12 +53,11 @@
                   </v-card-row>
                   <v-card-row>
                     <v-card-text>
-                      <v-text-field label="服务器地址" required></v-text-field>
-                      <v-text-field label="服务器端口" required hint="Aria2默认端口：6800"></v-text-field>
-                      <v-text-field label="RPC路径" required hint="Aria2默认RPC：/jsonrpc"></v-text-field>
-                      <v-text-field label="服务器密码" type="password"></v-text-field>
-                      <v-text-field label="Legal last name" hint="example of persistent helper text" persistent-hint required></v-text-field>
-                      <v-select label="Age" required :items="['0-17', '18-29', '30-54', '54+']"></v-select>
+                      <v-text-field label="服务器地址" required dark autofocus></v-text-field>
+                      <v-text-field label="服务器端口" required hint="Aria2默认端口：6800" dark></v-text-field>
+                      <v-text-field label="RPC路径" required hint="Aria2默认RPC：/jsonrpc" dark></v-text-field>
+                      <v-text-field label="服务器密码" type="password" dark></v-text-field>
+                      <v-switch label="SSL/TLS 加密" primary v-model="ssl" dark></v-switch>
                       <small>带*为必填项</small>
                     </v-card-text>
                   </v-card-row>
@@ -90,8 +89,11 @@
 export default {
   data() {
     return {
+      url: '127.0.0.1',
+      port: 6800,
       dialog: false,
       drawer: true,
+      ssl: false,
       items: [
         { title: '正在下载', icon: 'archive', count: 6 },
         { title: '已完成', icon: 'done_all', count: 8 },
