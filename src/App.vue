@@ -8,7 +8,7 @@
 
 <template>
   <v-app>
-    <v-navigation-drawer persistent :mini-variant.sync="mini" v-model="drawer">
+    <v-navigation-drawer permanent :mini-variant="mini" v-model="drawer">
       <v-list class="pa-0">
         <v-list-item>
           <v-list-tile avatar tag="div">
@@ -43,9 +43,9 @@
           <v-icon>more_vert</v-icon>
         </v-btn>
         <v-list dense class="pt-0 pb-0">
-          <v-list-item>
+          <v-list-item @click="auth = !auth">
             <v-list-tile ripple>
-              <v-list-tile-title @click="auth = !auth">连接设置</v-list-tile-title>
+              <v-list-tile-title>连接设置</v-list-tile-title>
               <aria2-auth :auth.sync="auth"></aria2-auth>
             </v-list-tile>
           </v-list-item>
