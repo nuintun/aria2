@@ -4,6 +4,10 @@
   html, body{
     overflow-y: auto;
   }
+
+  .ui-logo {
+    height: 56px;
+  }
 </style>
 
 <template>
@@ -24,19 +28,10 @@
     </v-navigation-drawer>
     <v-toolbar fixed light>
       <v-toolbar-side-icon light v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-list class="pa-0">
-        <v-list-item>
-          <v-list-tile avatar tag="div">
-            <v-list-tile-avatar>
-              <img src="/public/logo.png" />
-            </v-list-tile-avatar>
-            <v-list-tile-content>
-              <v-list-tile-title>Aria2</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list-item>
-      </v-list>
-      <v-spacer></v-spacer>
+      <v-toolbar-logo>
+        <img class="ui-logo" src="/public/logo.png" />
+        <v-toolbar-title>Aria2</v-toolbar-title>
+      </v-toolbar-logo>
       <v-menu bottom left>
         <v-btn icon="icon" slot="activator" light>
           <v-icon>more_vert</v-icon>
