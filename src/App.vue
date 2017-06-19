@@ -5,6 +5,10 @@
     display: block;
     margin-top: 12px;
   }
+
+  td, th{
+    white-space: nowrap;
+  }
 </style>
 
 <template>
@@ -77,9 +81,9 @@
               <td style="width: 4%;">
                 <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
               </td>
-              <td style="width: 6%">{{ props.item.status }}</td>
+              <td style="width: 6%;">{{ props.item.status }}</td>
               <td>{{ props.item.name }}</td>
-              <td style="width: 46%">
+              <td style="width: 46%;">
                 <v-layout fluid>
                   <v-flex xs11 class="pr-0">
                     <v-progress-linear :indeterminate="false" :height="13" v-model="props.item.process"></v-progress-linear>
@@ -89,7 +93,7 @@
                   </v-flex>
                 </v-layout>
               </td>
-              <td style="width: 10%" class="text-xs-right">{{ props.item.time }}</td>
+              <td style="width: 10%;" class="text-xs-right">{{ props.item.time }}</td>
               <td style="width: 10%;" class="text-xs-right">{{ props.item.speed }}</td>
             </template>
           </v-data-table>
