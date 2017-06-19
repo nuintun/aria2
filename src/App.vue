@@ -59,22 +59,26 @@
     </v-toolbar>
     <main>
       <v-container fluid class="pa-0">
-        <v-toolbar class="transparent elevation-0" dark>
-          <v-btn icon="icon" v-tooltip:bottom="{html: '全局设置'}">
-            <v-icon>pause</v-icon>
-          </v-btn>
-        </v-toolbar>
-        <v-divider dark></v-divider>
         <v-card>
-          <v-card-title v-if="false">
-            <v-btn icon="icon" v-tooltip:bottom="{html: '全局设置'}">
-              <v-icon>settings</v-icon>
+          <v-card-title>
+            <v-btn icon="icon" v-tooltip:bottom="{html: '添加任务'}">
+              <v-icon>playlist_add</v-icon>
             </v-btn>
-            <v-spacer></v-spacer>
-            <v-text-field append-icon="search" label="Search" single-line hide-details v-model="table.search"></v-text-field>
+            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '开始所选任务'}">
+              <v-icon>play_arrow</v-icon>
+            </v-btn>
+            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '暂停所选任务'}">
+              <v-icon>pause</v-icon>
+            </v-btn>
+            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '停止所选任务'}">
+              <v-icon>stop</v-icon>
+            </v-btn>
+            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '删除所选任务'}">
+              <v-icon>delete_sweep</v-icon>
+            </v-btn>
           </v-card-title>
           <v-divider dark class="grey lighten-1"></v-divider>
-          <v-data-table dark hide-actions :headers="table.headers" :items="table.items" :search="table.search" v-model="table.selected" select-all selected-key="id">
+          <v-data-table dark hide-actions :headers="table.headers" :items="table.items" v-model="table.selected" select-all selected-key="id">
             <template slot="items" scope="props">
               <td>
                 <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
@@ -107,7 +111,6 @@ export default {
         { title: '已删除', icon: 'delete', count: 10 }
       ],
       table: {
-        search: '',
         selected: [],
         headers: [
           {
