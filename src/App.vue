@@ -78,8 +78,8 @@
                 <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
               </td>
               <td style="width: 6%">{{ props.item.status }}</td>
-              <td style="width: 30%">{{ props.item.name }}</td>
-              <td style="width: 40%">
+              <td>{{ props.item.name }}</td>
+              <td style="width: 46%">
                 <v-layout fluid>
                   <v-flex xs11 class="pr-0">
                     <v-progress-linear :indeterminate="false" :height="13" v-model="props.item.process"></v-progress-linear>
