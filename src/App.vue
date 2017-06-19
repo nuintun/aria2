@@ -1,12 +1,9 @@
 <style lang="stylus">
   @import './stylus/main';
 
-  html, body{
-    overflow-y: auto;
-  }
-
-  .ui-logo {
-    height: 56px;
+  .ui-process-percent {
+    display: block;
+    margin-top: 12px;
   }
 </style>
 
@@ -26,7 +23,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed light>
+    <v-toolbar fixed light class="elevation-1">
       <v-toolbar-side-icon light v-tooltip:bottom="{html: '显示菜单'}" v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-logo>
         <img class="ui-logo" src="/public/logo.png" />
@@ -74,17 +71,26 @@
               <v-icon>remove_circle_outline</v-icon>
             </v-btn>
           </v-card-title>
-          <v-divider dark class="grey lighten-1"></v-divider>
-          <v-data-table dark hide-actions :headers="table.headers" :items="table.items" v-model="table.selected" select-all selected-key="id">
+          <v-divider dark class="grey lighten-1 elevation-1"></v-divider>
+          <v-data-table class="elevation-0" dark hide-actions hide-details :headers="table.headers" :items="table.items" v-model="table.selected" select-all selected-key="id">
             <template slot="items" scope="props">
-              <td>
+              <td style="width: 4%;">
                 <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
               </td>
-              <td>{{ props.item.status }}</td>
-              <td>{{ props.item.type }}</td>
-              <td>{{ props.item.name }}</td>
-              <td>{{ props.item.process }}</td>
-              <td class="text-xs-right">{{ props.item.speed }}</td>
+              <td style="width: 10%">{{ props.item.status }}</td>
+              <td style="width: 30%">{{ props.item.name }}</td>
+              <td style="width: 36%">
+                <v-layout fluid>
+                  <v-flex xs11 class="pr-0">
+                    <v-progress-linear :indeterminate="false" :height="13" v-model="props.item.process"></v-progress-linear>
+                  </v-flex>
+                  <v-flex xs1>
+                    <small class="ui-process-percent">{{ props.item.process }}%</small>
+                  </v-flex>
+                </v-layout>
+              </td>
+              <td style="width: 10%" class="text-xs-right">{{ props.item.time }}</td>
+              <td style="width: 10%;" class="text-xs-right">{{ props.item.speed }}</td>
             </template>
           </v-data-table>
         </v-card>
@@ -110,63 +116,56 @@ export default {
       table: {
         selected: [],
         headers: [
-          {
-            text: '状态',
-            left: true,
-            sortable: false,
-            value: 'status'
-          },
-          { text: '类型', value: 'type', left: true },
+          { text: '状态', value: 'status', sortable: false, left: true },
           { text: '名称', value: 'name', left: true },
-          { text: '进度/剩余时间', value: 'process', left: true },
+          { text: '进度', value: 'process', left: true },
+          { text: '剩余时间', value: 'time', left: false },
           { text: '下载速度', value: 'speed', left: false }
         ],
         items: [
           {
             id: 1,
             status: '下载',
-            type: '',
-            name: 87,
-            process: '14%',
-            speed: '1%'
+            name: 'node.js',
+            process: 10,
+            time: '10s',
+            speed: 512
           },
           {
             id: 2,
             status: '等待',
-            type: 'Ice cream sandwich',
-            name: 237,
-            process: 9.0,
-            speed: 37
+            name: 'git.exe',
+            process: 9,
+            time: '10s',
+            speed: 300
           },
           {
             id: 3,
             status: '暂停',
-            type: 'Eclair',
-            name: 262,
-            process: 16.0,
-            speed: 23
+            name: 'aria2.exe',
+            process: 16,
+            time: '10m',
+            speed: 1204
           },
           {
             id: 4,
             status: '暂停',
-            type: 'Eclair',
-            name: 262,
-            process: 16.0,
-            speed: 23
+            name: 'qq.exe',
+            process: 100,
+            time: '10h',
+            speed: 128
           },
           {
             id: 5,
             status: '暂停',
-            type: 'Eclair',
-            name: 262,
-            process: 16.0,
-            speed: 23
+            name: 'download.zip',
+            process: 16,
+            time: '10m',
+            speed: 160
           }
         ]
       }
     }
   }
 }
-
-// archive
 </script>
