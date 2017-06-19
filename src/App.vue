@@ -62,19 +62,16 @@
         <v-card>
           <v-card-title>
             <v-btn icon="icon" v-tooltip:bottom="{html: '添加任务'}">
-              <v-icon>playlist_add</v-icon>
+              <v-icon>add_circle_outline</v-icon>
             </v-btn>
             <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '开始所选任务'}">
-              <v-icon>play_arrow</v-icon>
+              <v-icon>play_circle_outline</v-icon>
             </v-btn>
             <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '暂停所选任务'}">
-              <v-icon>pause</v-icon>
-            </v-btn>
-            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '停止所选任务'}">
-              <v-icon>stop</v-icon>
+              <v-icon>pause_circle_outline</v-icon>
             </v-btn>
             <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '删除所选任务'}">
-              <v-icon>delete_sweep</v-icon>
+              <v-icon>remove_circle_outline</v-icon>
             </v-btn>
           </v-card-title>
           <v-divider dark class="grey lighten-1"></v-divider>
@@ -108,7 +105,7 @@ export default {
       items: [
         { title: '正在下载', icon: 'cloud_download', count: 6 },
         { title: '已完成', icon: 'done_all', count: 8 },
-        { title: '已删除', icon: 'delete', count: 10 }
+        { title: '已删除', icon: 'delete_sweep', count: 10 }
       ],
       table: {
         selected: [],
