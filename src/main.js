@@ -3,6 +3,8 @@ import App from './App.vue';
 import Vuetify from 'vuetify';
 import Auth from './components/Auth.vue';
 
+import './stylus/main.styl';
+
 Vue.use(Vuetify);
 Vue.component('aria2-auth', Auth);
 

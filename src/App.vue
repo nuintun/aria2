@@ -1,16 +1,3 @@
-<style lang="stylus">
-  @import './stylus/main';
-
-  .ui-process-percent {
-    display: block;
-    margin-top: 12px;
-  }
-
-  td, th{
-    white-space: nowrap;
-  }
-</style>
-
 <template>
   <v-app>
     <v-navigation-drawer persistent enable-resize-watcher :mini-variant="mini" v-model="drawer" :clipped="clipped">
