@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <v-navigation-drawer persistent enable-resize-watcher :mini-variant="mini" v-model="drawer" :clipped="clipped">
-      <v-list dense>
+      <v-list dense class="pa-0">
         <v-list-item v-for="item in items" :key="item">
-          <v-list-tile ripple>
+          <v-list-tile ripple router append :to="item.href">
             <v-list-tile-action>
               <v-icon light>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -47,44 +47,7 @@
     </v-toolbar>
     <main>
       <v-container fluid class="pa-0">
-        <v-card>
-          <v-card-title>
-            <v-btn icon="icon" v-tooltip:bottom="{html: '添加任务'}">
-              <v-icon>add_circle_outline</v-icon>
-            </v-btn>
-            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '开始所选任务'}">
-              <v-icon>play_circle_outline</v-icon>
-            </v-btn>
-            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '暂停所选任务'}">
-              <v-icon>pause_circle_outline</v-icon>
-            </v-btn>
-            <v-btn icon="icon" class="ml-3" v-tooltip:bottom="{html: '删除所选任务'}">
-              <v-icon>remove_circle_outline</v-icon>
-            </v-btn>
-          </v-card-title>
-          <v-divider dark class="grey lighten-1 elevation-1"></v-divider>
-          <v-data-table class="elevation-0" dark hide-actions hide-details :headers="table.headers" :items="table.items" v-model="table.selected" select-all selected-key="id">
-            <template slot="items" scope="props">
-              <td style="width: 4%;">
-                <v-checkbox primary hide-details v-model="props.selected"></v-checkbox>
-              </td>
-              <td style="width: 6%;">{{ props.item.status }}</td>
-              <td>{{ props.item.name }}</td>
-              <td style="width: 46%;">
-                <v-layout fluid>
-                  <v-flex xs11 class="pr-0">
-                    <v-progress-linear :indeterminate="false" :height="13" v-model="props.item.process"></v-progress-linear>
-                  </v-flex>
-                  <v-flex xs1>
-                    <small class="ui-process-percent">{{ props.item.process }}%</small>
-                  </v-flex>
-                </v-layout>
-              </td>
-              <td style="width: 10%;" class="text-xs-right">{{ props.item.time }}</td>
-              <td style="width: 10%;" class="text-xs-right">{{ props.item.speed }}</td>
-            </template>
-          </v-data-table>
-        </v-card>
+        <router-view></router-view>
       </v-container>
     </main>
   </v-app>
@@ -100,62 +63,10 @@ export default {
       drawer: true,
       configure: false,
       items: [
-        { title: '正在下载', icon: 'cloud_download', count: 6 },
-        { title: '已完成', icon: 'done_all', count: 8 },
-        { title: '已删除', icon: 'delete_sweep', count: 10 }
-      ],
-      table: {
-        selected: [],
-        headers: [
-          { text: '状态', value: 'status', sortable: false, left: true },
-          { text: '名称', value: 'name', left: true },
-          { text: '进度', value: 'process', left: true },
-          { text: '剩余时间', value: 'time', left: false },
-          { text: '下载速度', value: 'speed', left: false }
-        ],
-        items: [
-          {
-            id: 1,
-            status: '下载',
-            name: 'node.js',
-            process: 10,
-            time: '10s',
-            speed: 512
-          },
-          {
-            id: 2,
-            status: '等待',
-            name: 'git.exe',
-            process: 9,
-            time: '10s',
-            speed: 300
-          },
-          {
-            id: 3,
-            status: '暂停',
-            name: 'aria2.exe',
-            process: 16,
-            time: '10m',
-            speed: 1204
-          },
-          {
-            id: 4,
-            status: '暂停',
-            name: 'qq.exe',
-            process: 100,
-            time: '10h',
-            speed: 128
-          },
-          {
-            id: 5,
-            status: '暂停',
-            name: 'download.zip',
-            process: 16,
-            time: '10m',
-            speed: 160
-          }
-        ]
-      }
+        { title: '正在下载', icon: 'cloud_download', count: 6, href: '/download' },
+        { title: '已完成', icon: 'done_all', count: 8, href: '/done' },
+        { title: '已删除', icon: 'delete_sweep', count: 10, href: '/deleted' }
+      ]
     }
   }
 }
