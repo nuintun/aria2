@@ -39,11 +39,11 @@ export default {
     return {
       selected: [],
       headers: [
-        { text: '状态', value: 'status', sortable: false, left: true },
-        { text: '名称', value: 'name', left: true },
-        { text: '进度', value: 'process', left: true },
-        { text: '剩余时间', value: 'time', left: false },
-        { text: '下载速度', value: 'speed', left: false }
+        { text: '状态', value: 'status', left: true, sortable: false },
+        { text: '名称', value: 'name', left: true, sortable: false },
+        { text: '进度', value: 'process', left: true, sortable: false },
+        { text: '剩余时间', value: 'time', left: false, sortable: false },
+        { text: '下载速度', value: 'speed', left: false, sortable: false }
       ],
       items: [
         {
