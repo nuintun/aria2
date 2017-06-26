@@ -18,7 +18,7 @@
       <v-toolbar-side-icon light v-tooltip:bottom="{ html: '显示菜单' }" v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-logo>
         <img class="ui-logo" src="/public/logo.png">
-        <v-toolbar-title>Aria👌</v-toolbar-title>
+        <v-toolbar-title>Aria2</v-toolbar-title>
       </v-toolbar-logo>
       <v-btn icon="icon" light v-tooltip:bottom="{ html: '连接设置' }" @click.native="auth = !auth">
         <v-icon>account_circle</v-icon>
