@@ -15,20 +15,20 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed light class="elevation-1">
-      <v-toolbar-side-icon light v-tooltip:bottom="{html: '显示菜单'}" v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-side-icon light v-tooltip:bottom="{ html: '显示菜单' }" v-if="!drawer" @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-logo>
         <img class="ui-logo" src="/public/logo.png">
-        <v-toolbar-title>Aria2</v-toolbar-title>
+        <v-toolbar-title>Aria👌</v-toolbar-title>
       </v-toolbar-logo>
-      <v-btn icon="icon" light v-tooltip:bottom="{html: '连接设置'}" @click.native="auth = !auth">
+      <v-btn icon="icon" light v-tooltip:bottom="{ html: '连接设置' }" @click.native="auth = !auth">
         <v-icon>account_circle</v-icon>
         <aria2-auth :auth.sync="auth"></aria2-auth>
       </v-btn>
-      <v-btn icon="icon" light v-tooltip:bottom="{html: '全局设置'}">
+      <v-btn icon="icon" light v-tooltip:bottom="{ html: '全局设置' }">
         <v-icon>settings</v-icon>
       </v-btn>
       <v-menu bottom left>
-        <v-btn icon="icon" slot="activator" light v-tooltip:bottom="{html: '其它选项'}">
+        <v-btn icon="icon" slot="activator" light v-tooltip:bottom="{ html: '其它选项' }">
           <v-icon>more_vert</v-icon>
         </v-btn>
         <v-list dense class="pt-0 pb-0">
