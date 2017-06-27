@@ -1,6 +1,6 @@
-import download from '../components/download.vue';
-import done from '../components/done.vue';
-import deleted from '../components/deleted.vue';
+import download from '../components/Download.vue';
+import done from '../components/Done.vue';
+import deleted from '../components/Deleted.vue';
 
 export default {
   routes: [

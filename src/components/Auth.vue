@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="auth" :width="600">
+  <v-dialog persistent v-model="open" :width="600">
     <v-card>
       <v-card-row>
         <v-card-title>Aria2 设置</v-card-title>
@@ -17,7 +17,7 @@
       </v-card-row>
       <v-divider light></v-divider>
       <v-card-row actions>
-        <v-btn light primary @click.native="close()">保存</v-btn>
+        <v-btn light primary @click.native="auth()">保存</v-btn>
         <v-btn light secondary class="ml-2" @click.native="close()">取消</v-btn>
       </v-card-row>
     </v-card>
@@ -25,25 +25,39 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
-    auth: {
+    open: {
       type: Boolean,
       required: true
     }
   },
   data() {
+    var auth = this.$store.state.auth;
+
     return {
-      url: '127.0.0.1',
-      port: 6800,
-      rpc: '/jsonrpc',
-      password: '',
-      ssl: false
-    }
+      url: auth.url,
+      port: auth.port,
+      rpc: auth.rpc,
+      password: auth.password,
+      ssl: auth.ssl
+    };
   },
   methods: {
     close: function () {
-      this.$emit('update:auth', false);
+      this.$emit('update:open', false);
+    },
+    auth: function () {
+      this.close();
+      this.$store.commit('auth', {
+        url: this.url,
+        port: this.port,
+        rpc: this.rpc,
+        password: this.password,
+        ssl: this.ssl
+      });
     }
   }
 }

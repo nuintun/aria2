@@ -22,7 +22,7 @@
       </v-toolbar-logo>
       <v-btn icon="icon" light v-tooltip:bottom="{ html: '连接设置' }" @click.native="auth = !auth">
         <v-icon>account_circle</v-icon>
-        <aria2-auth :auth.sync="auth"></aria2-auth>
+        <aria2-auth :open.sync="auth"></aria2-auth>
       </v-btn>
       <v-btn icon="icon" light v-tooltip:bottom="{ html: '全局设置' }">
         <v-icon>settings</v-icon>
