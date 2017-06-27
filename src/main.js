@@ -7,8 +7,6 @@ import Vuex from 'vuex';
 import store from './store/index';
 import Auth from './components/Auth.vue';
 
-console.log(store);
-
 import './stylus/main.styl';
 
 Vue.use(Router);
