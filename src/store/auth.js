@@ -7,7 +7,7 @@ export default {
     ssl: false
   },
   mutations: {
-    auth: function(state, auth) {
+    auth(state, auth) {
       state.url = auth.url;
       state.port = auth.port;
       state.rpc = auth.rpc;

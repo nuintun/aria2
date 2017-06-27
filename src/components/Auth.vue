@@ -46,10 +46,10 @@ export default {
     };
   },
   methods: {
-    close: function () {
+    close() {
       this.$emit('update:open', false);
     },
-    auth: function () {
+    auth() {
       this.close();
       this.$store.commit('auth', {
         url: this.url,
