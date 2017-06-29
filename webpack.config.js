@@ -39,7 +39,7 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           // resolve-url-loader may be chained before sass-loader if necessary
-          use: ['css-loader', 'stylus-loader']
+          use: ['css-loader', { loader: 'postcss-loader', options: { sourceMap: true } }, 'stylus-loader']
         })
       }
     ]
